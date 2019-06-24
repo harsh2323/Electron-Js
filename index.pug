@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title File System
+    link(rel='stylesheet', href='./bower_components/bootstrap/dist/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    style(type='text/css').
+      #contact-list {
+      height: 150px;
+      overflow-y: auto;
+      }
+  body
+    .container
+      h1 Enter Names and Email addresses of your contacts
+      .form-group
+        label(for='Name') Name
+        input#Name.form-control(type='text', name='Name', value='', placeholder='Name', required='')
+      .form-group
+        label(for='Email') Email
+        input#Email.form-control(type='email', name='Email', value='', placeholder='Email', required='')
+      .form-group
+        button#add-to-list.btn.btn-primary Add to list!
+      #contact-list
+        table#contact-table.table-striped
+          tbody
+            tr
+              th.col-xs-2 S. No.
+              th.col-xs-4 Name
+              th.col-xs-6 Email
+      script. 
+        require('./view.js')
+      
