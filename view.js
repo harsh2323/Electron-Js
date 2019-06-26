@@ -1,44 +1,37 @@
-let $ = require('jquery');
-let fs = require('fs')
-let filename = 'contacts'
-let sno = 0
-
-$('#add-to-list').on('click', () => {
-   let name = $('#Name').val()
-   let email = $('#Email').val()
-
-   fs.appendFileSync('contacts', name + ',' + email + '\n')
-
-   addEntry(name, email)
-})
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var fs = require("fs");
+var filename = 'contacts';
+var btn = document.getElementById("add-to-list");
+var sno = 0;
+btn.addEventListener("click", function (e) {
+    var email = (document.getElementById("Email").value);
+    var name = (document.getElementById("Name").value);
+    fs.appendFileSync('contacts', +name + ',' + email + '\n');
+    addEntry(name, email);
+});
 function addEntry(name, email) {
-   if(name && email) {
-      sno++
-      let updateString = '<tr><td>'+ sno + '</td><td>'+ name +'</td><td>' 
-         + email +'</td></tr>'
-      $('#contact-table').append(updateString)
-   }
+    var table = document.getElementById("contact-table");
+    var index = 0;
+    if (name && email) {
+        sno++;
+        index++;
+        var row = table.insertRow();
+        var x = row.insertCell(0);
+        row.append(x.innerHTML = sno.toString(), x.innerHTML = name, x.innerHTML = email);
+    }
 }
-
-function loadAndDisplayContacts() {  
-   
-   //Check if file exists
-   if(fs.existsSync(filename)) {
-      let data = fs.readFileSync(filename, 'utf8').split('\n')
-      
-      data.forEach((contact) => {
-         let [ name, email ] = contact.split(',')
-         addEntry(name, email)
-      })
-   
-   } else {
-      console.log("File Doesn\'t Exist. Creating new file.")
-      fs.writeFileSync(filename, '', (err) => {
-         if(err)
-            console.log(err)
-      })
-   }
+function loadAndDisplay() {
+    if (fs.existsSync(filename)) {
+        var data = fs.readFileSync(filename, 'utf8').split('\n');
+        data.forEach(function (contact) {
+            var _a = contact.split(','), name = _a[0], email = _a[1];
+            addEntry(name, email);
+        });
+    }
+    else {
+        console.log("File doesnt exist, creating a new file");
+        fs.writeFileSync(filename, '', 'utf8');
+    }
 }
-
-loadAndDisplayContacts()
+loadAndDisplay();
