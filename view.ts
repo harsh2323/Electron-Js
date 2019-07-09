@@ -13,14 +13,13 @@ btn.addEventListener("click", (e: Event) => {
 
 function addEntry(name: string, email: string): void{
     var table: HTMLTableElement = <HTMLTableElement>document.getElementById("contact-table")
-    var index = 0
     if(name && email){
+        console.log(email)
         sno++
-        index++
         var row = table.insertRow()
-        var x = row.insertCell(0)
-
-        row.append(x.innerHTML = sno.toString(), x.innerHTML = name, x.innerHTML = email );
+        var x = row.insertCell()
+        var y = row.insertCell(0)
+        row.append(y.innerHTML = `${sno}`, x.innerHTML = name, x.innerHTML = email );
     }
 }
 
