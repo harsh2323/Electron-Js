@@ -1,2 +1,2 @@
-*.js linguist-language=TypeScript
-* -text
+* linguist-vendored
+*.ts linguist-vendored=true
