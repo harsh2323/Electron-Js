@@ -6,7 +6,7 @@
     "start": "electron ."
   },
   "dependencies": {
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "typescript-require": "^0.2.10"
   },
   "devDependencies": {
